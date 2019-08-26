@@ -54,11 +54,11 @@ In case static files (css, media, icon etc.) have been modified
 python3 SmartRoom/src/manage.py collectstatic
 ```
 
-### 4. Configure Apache2
+### 4. Configure Apache2
 This is a pain in the ass, you are welcome I wrote
 the procedure here ;)
 Here is the file to edit:
-** sudo nano /etc/apache2/sites-available/000-default.conf **
+**sudo nano /etc/apache2/sites-available/000-default.conf**
 ```
 <VirtualHost **>
   ServerName localhost
@@ -80,10 +80,37 @@ Here is the file to edit:
 
 </VirtualHost>
 ```
-
-
-
-
+### 4.5 Add project path to SmartRoom/src/SmartRoom/wsgi.py
+This is missing in default django wsgi.py generated file.
+```
+from settings import BASE_DIR
+path = BASE_DIR
+if path not in sys.path:
+    sys.path.append(path)
+```
+### 5. Give permission to Apache2
+I am not sure about the permission given. I might have given to many permission. In my case the app is not accessible from the outside.
+```
+sudo chown -R www-data:www-data ./SmartRoom
+sudo chmod -R 755 ./SmartRoom
+sudo chmod -R 775 ./SmartRoom/src/db.sqlite3
+```
+### 6. Allow apache2 process
+```
+$ sudo ufw allow 'Apache Full'
+```
+### 7. test Configuration
+```
+$ sudo apache2ctl configtest
+```
+### 8. start / restart apache2
+```
+$ sudo systemctl restart apache2
+```
+To manage apache2 service:
+```
+$ sudo service apache2 restart / stop / start
+```
 
 
 
