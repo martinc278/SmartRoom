@@ -112,7 +112,16 @@ To manage apache2 service:
 $ sudo service apache2 restart / stop / start
 ```
 
+#### Conclusion
+You can connect to the web app with:
+http://127.0.0.1/ConnectedChairs/
+Default admin crendentials:
+username: admin
+password: 123
 
-
+-[X] README.md
+-[X] Install guide
+-[] Cron periodic lookup for sensors data
+-[] dev guide
 
 
