@@ -119,9 +119,9 @@ Default admin crendentials:
 username: admin
 password: 123
 
--[X] README.md
--[X] Install guide
--[ ] Cron periodic lookup for sensors data
--[ ] dev guide
+- [X] README.md
+- [X] Install guide
+- [ ] Cron periodic lookup for sensors data
+- [ ] dev guide
 
 
