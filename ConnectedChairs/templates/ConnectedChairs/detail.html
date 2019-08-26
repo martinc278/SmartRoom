@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en" dir="ltr">
+
+  <head>
+    <meta charset="utf-8">
+    <title>Data history</title>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <link rel='stylesheet' href="{% static 'css/style.css' %}">
+  </head>
+
+  <body>
+    <div class="jumbotron text-center">
+      <h2>Data history: <span>{{chair.idc}}</span> </h2>
+    </div>
+
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-4">
+          {% if chair %}
+          <table class="table borderless table-hover">
+            <thead>
+              <tr>
+                <th>Field</th>
+                <th>Value</th>
+              </tr>
+            </thead>
+            <tbody>
+                <tr>
+                  <td>IP</td>
+                  <td>{{ chair.ip }}</td>
+                </tr>
+                <tr>
+                  <td>ID</td>
+                  <td>{{ chair.idc }}</td>
+                </tr>
+            </tbody>
+          </table>
+          {% endif %}
+        </div>
+
+        <div class="col-sm-8">
+          {% if list_measures %}
+          <table class="table borderless table-hover">
+            <thead>
+              <tr>
+                <th>Distance</th>
+                <th>Temperature</th>
+                <th>Time stamp</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for measure in list_measures %}
+                <tr>
+                  <td>{{ measure.sensor_distance }}</td>
+                  <td>{{ measure.sensor_temperature }}</td>
+                  <td>{{ measure.date }}</td>
+                </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+
+  </body>
+</html>

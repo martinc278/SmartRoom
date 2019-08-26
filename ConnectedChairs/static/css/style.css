@@ -1,0 +1,22 @@
+h1 {
+  color: #FFFF;
+  font-size: 4em;
+}
+
+h2 {
+  color: #FFFF;
+  font-size: 2em;
+}
+
+h2 span {
+  color: #333;
+}
+
+.borderless th {
+    border: none;
+}
+
+.jumbotron {
+    background: #0071c5 !important;
+    background-image: linear-gradient(to right, #002266, #0071c5, #33ccff) !important;
+}
