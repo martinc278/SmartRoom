@@ -125,7 +125,7 @@ $ crontab -e
 ```
 Then add to this file:
 ```
-*/10 * * * * source /path/to/SmartRoom/connect_sensors.sh
+*/10 * * * * /path/to/SmartRoom/connect_sensors.sh
 ```
 You might need to use the root cron instead:
 ```
