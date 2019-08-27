@@ -23,7 +23,7 @@ class Measure(models.Model):
         return ('{:<20} [{}]'.format(str(self.idc), str(self.date)))
 
     def was_measured_recently(self):
-        return self.date >= timezone.now() - datetime.timedelta(minutes=MEASURES_PERSISTENCE)
+        return self.date >= timezone.now() - datetime.timedelta(days=MEASURES_PERSISTENCE)
 
     was_measured_recently.admin_order_field = 'date'
     was_measured_recently.boolean = True
