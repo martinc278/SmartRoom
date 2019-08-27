@@ -125,13 +125,13 @@ $ crontab -e
 ```
 Then add to this file:
 ```
-*/10 * * * * ./path/to/SmartRoom/connect_sensors.sh
+*/10 * * * * source /path/to/SmartRoom/connect_sensors.sh
 ```
 You might need to use the root cron instead:
 ```
 $ sudo crontab -e
 ```
-# ./path/to/SmartRoom/connect_sensors.sh
+#### ./path/to/SmartRoom/connect_sensors.sh
 ```
 #!/bin/sh
 /path/to/SmartRoom/bin/python3 /path/to/SmartRoom/src/manage.py connect_sensors
