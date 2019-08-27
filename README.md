@@ -91,9 +91,11 @@ if path not in sys.path:
 ### 5. Give permission to Apache2
 I am not sure about the permission given. I might have given to many permission. In my case the app is not accessible from the outside.
 ```
-sudo chown -R www-data:www-data ./SmartRoom
+sudo chown -R :www-data ./SmartRoom
 sudo chmod -R 755 ./SmartRoom
 sudo chmod -R 775 ./SmartRoom/src/db.sqlite3
+sudo chmod a+w ./SmartRoom/src/
+sudo chmod o-w ./SmartRoom/src/
 ```
 ### 6. Allow apache2 process
 ```
@@ -123,9 +125,9 @@ $ crontab -e
 ```
 Then add to this file:
 ```
-*/1 * * * * python3 /path/to/SmartRoom/src/SmartRoom/ manage.py connect_sensors
+*/1 * * * * source /path/to/SmartRoom/bin/activate | python3 /path/to/SmartRoom/src/manage.py connect_sensors
 ```
-You might need to use the root cron:
+You might need to use the root cron instead:
 ```
 $ sudo crontab -e
 ```
@@ -140,7 +142,7 @@ password: 123
 
 - [X] README.md
 - [X] Install guide
-- [ ] Cron periodic lookup for sensors data
+- [X] Cron periodic lookup for sensors data
 - [ ] dev guide
 
 
