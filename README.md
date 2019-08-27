@@ -111,6 +111,25 @@ To manage apache2 service:
 ```
 $ sudo service apache2 restart / stop / start
 ```
+## Crontab : periodic task
+The webapp have to ping the sensors and update data every 10 minutes. A crontab was used to automate this.
+The Django command to ping sensors is:
+```
+$ python3 SmartRoom/src/SmartRoom/manage.py connect_sensors
+```
+To edit the cron tab:
+```
+$ crontab -e
+```
+Then add to this file:
+```
+*/1 * * * * python3 /path/to/SmartRoom/src/SmartRoom/ manage.py connect_sensors
+```
+You might need to use the root cron:
+```
+$ sudo crontab -e
+```
+
 
 #### Conclusion
 You can connect to the web app with:
