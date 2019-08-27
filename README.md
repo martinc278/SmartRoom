@@ -1,6 +1,6 @@
 # SmartRoom
 
-SmartRoom is a simple django-based web app used in Munich Intel IOT Lab to connect sensors
+SmartRoom is a simple django-based web app used in an IOT Lab to connect sensors
 and display values in the web browser. 
 Python3.6, Django2.2
 ## Install
