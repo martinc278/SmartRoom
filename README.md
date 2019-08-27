@@ -16,9 +16,9 @@ $ virtualenv -p python3 SmartRoom
 $ git clone http://github/9OP/SmartRoom SmartRoom/src/
 ```
 ### 3. Install dependencies
-**It's important to activate the virutal environnment**.
+**It's important to activate the virtual environnment**.
 You don't want your python dependencies to be messed up
-with your other python project.
+with your other python projects.
 ```
 $ source SmartRoom/bin/activate
 $ pip3 install -r requirements.txt
