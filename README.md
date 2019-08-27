@@ -125,13 +125,17 @@ $ crontab -e
 ```
 Then add to this file:
 ```
-*/1 * * * * source /path/to/SmartRoom/bin/activate | python3 /path/to/SmartRoom/src/manage.py connect_sensors
+*/10 * * * * ./path/to/SmartRoom/connect_sensors.sh
 ```
 You might need to use the root cron instead:
 ```
 $ sudo crontab -e
 ```
-
+# ./path/to/SmartRoom/connect_sensors.sh
+```
+#!/bin/sh
+/path/to/SmartRoom/bin/python3 /path/to/SmartRoom/src/manage.py connect_sensors
+```
 
 #### Conclusion
 You can connect to the web app with:
