@@ -35,33 +35,39 @@ def connect_sensors():
 
     data = {}  # {'ip':{'distance': 1, 'temperature':2}, {...}}
 
-    # # processing : connect to sensors and get values
-    # for ip in ip_list:
-    #     url = 'http://'+ip+'/json'
-    #     resp = requests.get(url=url)
-    #     chair_data = resp.json()
-    #     data[ip] = {'temperature': str(chair_data['Sensors'][0]['TaskValues'][0]['Value']) + ' D. Celsius',
-    #                 'distance': str(chair_data['Sensors'][1]['TaskValues'][0]['Value']) + ' cm'}
-    #
-    # # Update databse with new measures data
-    # for ip, sensors in data.items():
-    #     my_chair = get_object_or_404(Chair, ip=ip)
-    #     meas = Measure()
-    #     meas.idc = my_chair
-    #     meas.sensor_distance = sensors['distance']
-    #     meas.sensor_temperature = sensors['temperature']
-    #     meas.date = timezone.now()
-    #     meas.save()
+    # processing : connect to sensors and get values
+    for ip in ip_list:
+        try:
+            url = 'http://'+ip+'/json'
+            resp = requests.get(url=url)
+        except requests.exceptions.RequestException as ex:
+    	    # print(ex)
+    	    data[ip] = {'temperature':'N/A', 'distance':'N/A'}
+       	else:
+       		chair_data = resp.json()
+       		data[ip] = {'temperature': str(chair_data['Sensors'][0]['TaskValues'][0]['Value']) + ' D. Celsius',
+                     'distance': str(chair_data['Sensors'][1]['TaskValues'][0]['Value']) + ' cm'}
+       		
+    
+    # Update databse with new measures data
+    for ip, sensors in data.items():
+    	my_chair = get_object_or_404(Chair, ip=ip)
+    	meas = Measure()
+    	meas.idc = my_chair
+    	meas.sensor_distance = sensors['distance']
+    	meas.sensor_temperature = sensors['temperature']
+    	meas.date = timezone.now()
+    	meas.save()
 
     # Update databse with new measures data
-    for ip in ip_list:
-        my_chair = get_object_or_404(Chair, ip=ip)
-        meas = Measure()
-        meas.idc = my_chair
-        meas.sensor_distance = '10'
-        meas.sensor_temperature = '10'
-        meas.date = timezone.now()
-        meas.save()
+    # for ip in ip_list:
+    #    my_chair = get_object_or_404(Chair, ip=ip)
+    #    meas = Measure()
+    #    meas.idc = my_chair
+    #    meas.sensor_distance = '10'
+    #    meas.sensor_temperature = '10'
+    #    meas.date = timezone.now()
+    #    meas.save()
 
     # Remove data more than MEASURES_PERSISTENCE long
     list_measures = get_list_or_404(Measure)
